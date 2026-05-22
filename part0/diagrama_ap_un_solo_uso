@@ -1,0 +1,20 @@
+---
+layout: elk
+---
+sequenceDiagram
+    participant U as Usuario
+    participant B as Navegador
+    participant S as Servidor
+
+    U->>B: Accede a https://studies.cs.helsinki.fi/exampleapp/spa
+    B->>S: Solicita /exampleapp/spa
+    S-->>B: Devuelve HTML de la SPA
+    B->>S: Solicita archivo JavaScript (main.js)
+    S-->>B: Devuelve main.js
+    B->>S: Solicita datos JSON (/exampleapp/data.json)
+    S-->>B: Devuelve notas en formato JSON
+    B->>B: Renderiza notas dinámicamente usando JavaScript
+    U->>B: Crea nueva nota (entrada + clic enviar)
+    B->>S: Envía nueva nota como JSON (POST)
+    S-->>B: Confirma recepción
+    B->>B: Actualiza lista de notas sin recargar la página
