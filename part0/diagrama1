@@ -1,0 +1,15 @@
+%%{init: {"layout": "elk"}}%%
+sequenceDiagram
+    participant User as Usuario (Navegador)
+    participant Form as Formulario HTML
+    participant JS as main.js (Script)
+    participant Server as Servidor
+    participant Data as data.json (Datos)
+
+    User->>Form: Completa y envía el formulario
+    Form->>JS: Dispara evento submit()
+    JS->>Server: POST /exampleapp/new_note
+    Server-->>JS: 302 Found (redirección a /exampleapp/notes)
+    JS->>Data: Solicita data.json (XHR)
+    Data-->>JS: Responde con datos actualizados
+    JS-->>User: Actualiza lista de notas en la interfaz
